@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://USERNAME.github.io/deutsch-grammar/sitemap.xml
+Sitemap: https://samradfar.github.io/deutsch-grammar/sitemap.xml
