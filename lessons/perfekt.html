@@ -1,1 +1,886 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e40af">
+<title>Perfekt — گرامر آلمانی جامع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f7f8fc;--surface:#fff;--surface2:#f1f4f9;--border:#e4e8f0;--border2:#c8d0e0;
+  --ink:#0f1623;--ink2:#374151;--ink3:#6b7280;--ink4:#9ca3af;
+  --blue:#1e40af;--blue2:#2563eb;--blue-l:#eff6ff;--blue-m:#bfdbfe;
+  --green:#166534;--green-l:#f0fdf4;--green-m:#bbf7d0;
+  --red:#991b1b;--red-l:#fef2f2;--red-m:#fecaca;
+  --amber:#92400e;--amber-l:#fffbeb;--amber-m:#fde68a;
+  --purple:#5b21b6;--purple-l:#f5f3ff;--purple-m:#ddd6fe;
+  --orange:#9a3412;--orange-l:#fff7ed;--orange-m:#fed7aa;
+  --teal:#115e59;--teal-l:#f0fdfa;--teal-m:#99f6e4;
+  --fn:'Vazirmatn',Tahoma,sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:12px;--r-sm:8px;--r-lg:16px;--r-xl:20px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0c0f18;--surface:#151a28;--surface2:#1e2435;--border:#2a3045;--border2:#3a4560;
+    --ink:#e8ecf4;--ink2:#b0bcd4;--ink3:#7080a0;--ink4:#4a5870;
+    --blue-l:#1e3a6e;--blue-m:#1e4090;--green-l:#0a2e1a;--green-m:#134e2a;
+    --red-l:#2d0f0f;--red-m:#5a1f1f;--amber-l:#2d1f08;--amber-m:#5a3810;
+    --purple-l:#1e1040;--purple-m:#3d2080;--orange-l:#2d1500;--orange-m:#7c2d12;
+    --teal-l:#062020;--teal-m:#0e3a3a;
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--fn);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
 
+/* ── LAYOUT ── */
+.page{max-width:800px;margin:0 auto;padding-bottom:80px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#1e40af 60%,#2563eb 100%);padding:40px 32px 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-20px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 12px;border-radius:20px;margin-bottom:16px;direction:ltr}
+.hero-title{font-size:42px;font-weight:700;color:#fff;direction:ltr;margin-bottom:4px;font-family:var(--fm);letter-spacing:-.5px}
+.hero-title-fa{font-size:19px;color:rgba(255,255,255,.7);margin-bottom:14px;font-weight:300}
+.hero-desc{font-size:14.5px;color:rgba(255,255,255,.8);line-height:1.85;max-width:540px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero-tag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-size:12px;padding:4px 12px;border-radius:20px}
+
+/* ── STICKY PROGRESS ── */
+.sticky-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 32px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;backdrop-filter:blur(12px)}
+.sb-label{font-size:12px;color:var(--ink3);white-space:nowrap}
+.sb-bar{flex:1;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.sb-fill{height:100%;background:linear-gradient(90deg,var(--blue2),#60a5fa);border-radius:4px;transition:width .4s ease;width:0%}
+.sb-pct{font-size:12px;font-weight:700;color:var(--blue2);min-width:32px;direction:ltr}
+
+/* ── CONTENT ── */
+.content{padding:0 32px}
+@media(max-width:640px){.hero{padding:28px 18px 36px}.content{padding:0 16px}.sticky-bar{padding:10px 16px}}
+
+/* ── SECTION ── */
+.section{margin-top:44px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink4);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── LEVEL BADGE ── */
+.level-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:14px;letter-spacing:.3px}
+.level-a2{background:var(--green-l);color:var(--green);border:1px solid var(--green-m)}
+.level-b1{background:var(--amber-l);color:var(--amber);border:1px solid var(--amber-m)}
+.level-b1b2{background:var(--orange-l);color:var(--orange);border:1px solid var(--orange-m)}
+.level-b2{background:var(--red-l);color:var(--red);border:1px solid var(--red-m)}
+
+/* ── ADVANCED NOTICE ── */
+.advanced-notice{background:var(--amber-l);border:1px solid var(--amber-m);border-right:4px solid #d97706;border-radius:var(--r-lg);padding:16px 20px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+.advanced-notice.b1b2{background:var(--orange-l);border-color:var(--orange-m);border-right-color:#ea580c}
+.advanced-notice.b2{background:var(--red-l);border-color:var(--red-m);border-right-color:#dc2626}
+.an-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.an-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.advanced-notice .an-title{color:var(--amber)}
+.advanced-notice.b1b2 .an-title{color:var(--orange)}
+.advanced-notice.b2 .an-title{color:var(--red)}
+.an-body{font-size:13px;color:var(--ink3);line-height:1.75}
+
+/* ── TEACHER BOX ── */
+.teacher-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;line-height:1.9;font-size:15px;color:var(--ink2);position:relative}
+.teacher-box::before{content:'👨‍🏫';font-size:22px;position:absolute;top:-13px;right:18px;background:var(--bg);padding:0 6px}
+.teacher-box p+p{margin-top:12px}
+.teacher-box strong{color:var(--ink);font-weight:600}
+.hl{background:var(--blue-l);color:var(--blue);padding:1px 6px;border-radius:4px;font-weight:500;font-family:var(--fm);font-size:13.5px}
+.hl-g{background:var(--green-l);color:var(--green);padding:1px 6px;border-radius:4px;font-weight:500}
+.hl-r{background:var(--red-l);color:var(--red);padding:1px 6px;border-radius:4px;font-weight:500}
+.hl-a{background:var(--amber-l);color:var(--amber);padding:1px 6px;border-radius:4px;font-weight:500}
+
+/* ── SVG WRAP ── */
+.svg-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:14px}
+.svg-cap{font-size:12px;color:var(--ink3);text-align:center;padding:9px 16px;border-top:1px solid var(--border);background:var(--surface2)}
+
+/* ── COMPARE ── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:500px){.compare{grid-template-columns:1fr}}
+.cmp-card{border-radius:var(--r-lg);padding:16px 18px;border:1px solid var(--border)}
+.cmp-card.fa{background:var(--amber-l);border-color:var(--amber-m)}
+.cmp-card.de{background:var(--blue-l);border-color:var(--blue-m)}
+.cmp-lang{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;opacity:.6}
+.cmp-card.fa .cmp-lang{color:var(--amber)}
+.cmp-card.de .cmp-lang{color:var(--blue);direction:ltr}
+.cmp-card ul{list-style:none}
+.cmp-card ul li{font-size:14px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06);line-height:1.6}
+.cmp-card ul li:last-child{border-bottom:none}
+.cmp-card.de ul li{direction:ltr;font-family:var(--fm);font-size:13px}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--border);background:var(--surface);margin-top:14px}
+.gtbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:360px}
+.gtbl thead th{background:var(--ink);color:rgba(255,255,255,.8);padding:10px 14px;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;text-align:right;border-right:1px solid rgba(255,255,255,.08);white-space:nowrap}
+.gtbl thead th.ltr{text-align:left;direction:ltr}
+.gtbl thead th:last-child{border-right:none}
+.gtbl tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+.gtbl tbody tr:last-child{border-bottom:none}
+.gtbl tbody tr:hover{background:var(--surface2)}
+.gtbl tbody tr.hl-row{background:var(--blue-l)}
+.gtbl td{padding:10px 14px;vertical-align:middle;border-right:1px solid var(--border);line-height:1.5}
+.gtbl td:last-child{border-right:none}
+.gtbl td.de{font-family:var(--fm);font-size:13px;direction:ltr;text-align:left;color:var(--blue)}
+.gtbl td.green{color:var(--green);font-weight:600}
+.gtbl td.red{color:var(--red);font-weight:600}
+.gtbl td.gray{color:var(--ink3)}
+
+/* ── PARTIZIP ROWS ── */
+.pz-list{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.pz-row{display:grid;grid-template-columns:160px 1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;font-size:13.5px}
+@media(max-width:560px){.pz-row{grid-template-columns:1fr}.pz-cell{border-right:none!important;border-bottom:1px solid var(--border)}.pz-cell:last-child{border-bottom:none}}
+.pz-cell{padding:12px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
+.pz-cell:last-child{border-right:none}
+.pz-cell.type{background:var(--surface2);font-weight:600;color:var(--ink2);font-size:12.5px}
+.pz-cell.pattern{font-family:var(--fm);color:var(--blue);font-size:12.5px;direction:ltr}
+.pz-cell.example{font-family:var(--fm);color:var(--green);font-size:12.5px;direction:ltr}
+.pz-sub{font-size:11px;color:var(--ink4);margin-top:2px}
+
+/* ── EXAMPLES ── */
+.examples{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:box-shadow .2s}
+.ex-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.ex-de{padding:13px 18px 8px;font-family:var(--fm);font-size:14px;direction:ltr;text-align:left;color:var(--ink);display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ex-de .aux{color:var(--blue2);font-weight:600}
+.ex-de .p2{color:var(--green);font-weight:600}
+.ex-de .neg{color:var(--red)}
+.ex-fa{padding:6px 18px 10px;font-size:13px;color:var(--ink3);border-top:1px solid var(--border);background:var(--surface2)}
+.ex-note{padding:5px 18px 10px;font-size:12px;color:var(--ink4);background:var(--surface2);font-style:italic}
+.speak-btn{background:none;border:1px solid var(--border2);border-radius:var(--r-sm);padding:3px 9px;cursor:pointer;font-size:11px;font-weight:500;color:var(--ink3);white-space:nowrap;transition:all .15s;flex-shrink:0;direction:ltr}
+.speak-btn:hover{border-color:var(--blue2);color:var(--blue2)}
+.speak-btn.on{border-color:var(--blue2);color:var(--blue2);background:var(--blue-l)}
+
+/* ── CALLOUT ── */
+.callout{border-radius:var(--r-lg);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.8;color:var(--ink2);margin-top:14px}
+.callout-icon{font-size:19px;flex-shrink:0;margin-top:1px}
+.callout.tip{background:var(--green-l);border:1px solid var(--green-m);border-right:4px solid var(--green)}
+.callout.info{background:var(--blue-l);border:1px solid var(--blue-m);border-right:4px solid var(--blue2)}
+.callout.warn{background:var(--amber-l);border:1px solid var(--amber-m);border-right:4px solid #d97706}
+.callout.purple{background:var(--purple-l);border:1px solid var(--purple-m);border-right:4px solid var(--purple)}
+.callout strong{color:var(--ink);font-weight:600}
+.callout code{font-family:var(--fm);font-size:12.5px;padding:1px 5px;border-radius:4px;direction:ltr;display:inline-block}
+.callout.tip code{background:rgba(22,101,52,.1);color:var(--green)}
+.callout.info code{background:rgba(37,99,235,.1);color:var(--blue2)}
+.callout.warn code{background:rgba(146,64,14,.1);color:var(--amber)}
+
+/* ── TRAP LIST ── */
+.trap-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.trap-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.trap-wrong{padding:9px 16px;font-family:var(--fm);font-size:13px;direction:ltr;color:var(--red);background:var(--red-l);display:flex;align-items:center;gap:8px}
+.trap-right{padding:9px 16px;font-family:var(--fm);font-size:13px;direction:ltr;color:var(--green);background:var(--green-l);display:flex;align-items:center;gap:8px;border-top:1px solid var(--border)}
+.trap-why{padding:7px 16px 10px;font-size:12.5px;color:var(--ink3);border-top:1px solid var(--border)}
+
+/* ── DIALOG ── */
+.dialog-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:14px}
+.dialog-header{background:var(--surface2);padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.dialog-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:85%;border-radius:var(--r-lg);padding:10px 14px;font-size:13.5px;line-height:1.65}
+.bubble.a{background:var(--blue-l);border:1px solid var(--blue-m);align-self:flex-end;border-bottom-left-radius:4px}
+.bubble.b{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;border-bottom-right-radius:4px}
+.bubble .de{font-family:var(--fm);font-size:13px;direction:ltr;color:var(--ink);display:block;margin-bottom:3px}
+.bubble .de .aux{color:var(--blue2);font-weight:600}
+.bubble .de .p2{color:var(--green);font-weight:600}
+.bubble .fa{font-size:12px;color:var(--ink3);display:block}
+.bubble .speaker{font-size:10px;font-weight:700;color:var(--ink4);margin-bottom:4px;letter-spacing:.5px}
+
+/* ── QUIZ ── */
+.quiz-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-top:44px}
+.quiz-header{background:linear-gradient(135deg,#1e3a8a,#1e40af);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.qh-title{font-size:16px;font-weight:700;color:white}
+.qh-sub{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+.score-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;font-size:13px;font-weight:700;padding:4px 14px;border-radius:20px;direction:ltr}
+.quiz-body{padding:20px 24px;display:flex;flex-direction:column;gap:24px}
+.qnum{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue2);margin-bottom:8px}
+.q-text{font-family:var(--fm);font-size:15px;direction:ltr;color:var(--ink);font-weight:500;margin-bottom:12px;line-height:1.6;background:var(--surface2);padding:12px 16px;border-radius:var(--r);border:1px solid var(--border)}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:480px){.q-opts{grid-template-columns:1fr}}
+.q-opt{padding:10px 16px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--surface2);font-family:var(--fm);font-size:13.5px;cursor:pointer;transition:all .15s;color:var(--ink2);direction:ltr;font-weight:500;text-align:center}
+.q-opt:hover:not([disabled]){border-color:var(--blue2);color:var(--blue2);background:var(--blue-l)}
+.q-opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.q-opt.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.q-opt[disabled]{cursor:default}
+.q-feedback{display:none;margin-top:10px;padding:10px 14px;border-radius:var(--r);font-size:13.5px;line-height:1.7}
+.q-feedback.show{display:block;animation:fadeUp .2s ease}
+.q-feedback.ok{background:var(--green-l);color:var(--green);border:1px solid var(--green-m)}
+.q-feedback.err{background:var(--red-l);color:var(--red);border:1px solid var(--red-m)}
+.quiz-div{height:1px;background:var(--border)}
+
+/* ── DONE ── */
+.done-section{margin-top:40px;padding:26px 22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);text-align:center}
+.done-title{font-size:17px;font-weight:600;margin-bottom:6px}
+.done-sub{font-size:13.5px;color:var(--ink3);margin-bottom:18px}
+.done-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:40px;border:2px solid var(--border2);background:var(--surface);font-family:var(--fn);font-size:14px;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .25s}
+.done-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-l)}
+.done-btn.marked{border-color:var(--green);color:var(--green);background:var(--green-l)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BACK NAV ── */
+.back-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--fn);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.back-btn:hover { border-color: var(--blue2); color: var(--blue2); }
+.back-nav-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink3);
+  flex: 1;
+  text-align: center;
+}
+.back-nav-spacer { width: 80px; }
+
+</style>
+</head>
+<body>
+
+<div class="back-nav">
+  <a class="back-btn" href="../index.html">← خانه</a>
+  <div class="back-nav-title">Perfekt</div>
+  <div class="back-nav-spacer"></div>
+</div>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">گرامر جامع · A2 → B2</div>
+  <div class="hero-title">Das Perfekt</div>
+  <div class="hero-title-fa">زمان گذشته کامل — از پایه تا پیشرفته</div>
+  <div class="hero-desc">این درس همه جنبه‌های Perfekt را پوشش می‌دهد. بخش‌های پایه برای A2 ضروری هستند. بخش‌هایی که با علامت ⚡ مشخص شده‌اند برای سطوح B1 یا B2 هستند — الان کافی است فقط آشنا شوی.</div>
+  <div class="hero-tags">
+    <span class="hero-tag">⏱ ~۶۰ دقیقه</span>
+    <span class="hero-tag">📚 ۸ بخش اصلی</span>
+    <span class="hero-tag">🔊 تلفظ صوتی</span>
+    <span class="hero-tag">✅ ۶ تمرین</span>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="sticky-bar">
+  <span class="sb-label">پیشرفت</span>
+  <div class="sb-bar"><div class="sb-fill" id="sb-fill"></div></div>
+  <span class="sb-pct" id="sb-pct">0%</span>
+</div>
+
+<div class="content">
+
+<!-- ══ بخش ۱ — چرا Perfekt؟ ══ -->
+<div class="section">
+  <div class="section-label">بخش ۱ — چرا Perfekt وجود دارد؟</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="teacher-box">
+    <p>تصور کن دوشنبه صبح سر کار هستی. همکارت می‌پرسد: «آخر هفته چیکار کردی؟» در فارسی می‌گویی «رفتم سینما» یا «دیدم دوستامو». آلمانی‌ها در این مکالمه روزمره <span class="hl">Perfekt</span> استفاده می‌کنند.</p>
+    <p>اسم رسمی این زمان <strong>vollendete Gegenwart</strong> (حال کامل) است — یعنی کاری که در گذشته انجام شده اما ارتباطی با حال دارد. مثلاً «دیروز کتاب خریدم» — این خرید دیروز اتفاق افتاد، اما کتاب الان پیش توست.</p>
+    <p>نکته مهم: Perfekt زبان <span class="hl-g">مکالمه شفاهی و نامه‌های شخصی</span> است. در روزنامه و داستان از Präteritum استفاده می‌شود — اما اگر می‌خواهی با آلمانی‌ها حرف بزنی، <strong>Perfekt یاد بگیر.</strong></p>
+  </div>
+
+  <div class="compare">
+    <div class="cmp-card fa">
+      <div class="cmp-lang">فارسی — گذشته</div>
+      <ul>
+        <li>دیروز <strong>رفتم</strong> خرید</li>
+        <li>فیلم <strong>دیدم</strong></li>
+        <li>غذا <strong>پختم</strong></li>
+        <li>نامه <strong>نوشتم</strong></li>
+        <li>تا دیروقت <strong>کار کردم</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card de">
+      <div class="cmp-lang">Deutsch — Perfekt</div>
+      <ul>
+        <li>Ich <b>bin</b> einkaufen <b>gegangen</b></li>
+        <li>Ich <b>habe</b> einen Film <b>gesehen</b></li>
+        <li>Ich <b>habe</b> <b>gekocht</b></li>
+        <li>Ich <b>habe</b> einen Brief <b>geschrieben</b></li>
+        <li>Ich <b>habe</b> bis spät <b>gearbeitet</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ بخش ۲ — ساختار ══ -->
+<div class="section">
+  <div class="section-label">بخش ۲ — ساختار جمله</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="teacher-box">
+    <p>Perfekt همیشه از <strong>دو فعل</strong> تشکیل می‌شود: یک <span class="hl-r">فعل کمکی (haben یا sein)</span> که در جایگاه دوم جمله قرار می‌گیرد، و یک <span class="hl-g">Partizip II</span> که همیشه در انتهای جمله می‌آید.</p>
+    <p>فعل کمکی صرف می‌شود (بر اساس ضمیر تغییر می‌کند) — اما Partizip II <strong>هیچوقت تغییر نمی‌کند</strong>. یک شکل ثابت دارد که همیشه آخر جمله می‌نشیند.</p>
+  </div>
+
+  <div class="svg-wrap">
+    <svg width="100%" viewBox="0 0 680 195" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#c8d0e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect width="680" height="195" fill="var(--surface)"/>
+      <text x="340" y="26" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="var(--ink3)" font-weight="600">ساختار جمله Perfekt</text>
+      <!-- Slot 1 -->
+      <rect x="20" y="44" width="110" height="62" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="75" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="13" fill="#1e40af" font-weight="600">Ich</text>
+      <text x="75" y="86" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">فاعل</text>
+      <text x="75" y="100" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="10" fill="#9ca3af">جایگاه ۱</text>
+      <line x1="132" y1="75" x2="150" y2="75" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a)"/>
+      <!-- Slot 2 -->
+      <rect x="152" y="44" width="130" height="62" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="2"/>
+      <text x="217" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="15" fill="#991b1b" font-weight="700">habe / bin</text>
+      <text x="217" y="87" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">فعل کمکی — صرف می‌شود</text>
+      <text x="217" y="100" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="10" fill="#9ca3af">جایگاه ۲ — ثابت</text>
+      <line x1="284" y1="75" x2="302" y2="75" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a)"/>
+      <!-- Slot 3 -->
+      <rect x="304" y="44" width="148" height="62" rx="10" fill="#f8f9fc" stroke="#e4e8f0" stroke-width="1.5"/>
+      <text x="378" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="13" fill="#374151">gestern</text>
+      <text x="378" y="87" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">بقیه جمله</text>
+      <text x="378" y="100" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="10" fill="#9ca3af">قید / مفعول</text>
+      <line x1="454" y1="75" x2="472" y2="75" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a)"/>
+      <!-- Slot 4 -->
+      <rect x="474" y="44" width="186" height="62" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+      <text x="567" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="15" fill="#166534" font-weight="700">gemacht</text>
+      <text x="567" y="87" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">Partizip II — تغییر نمی‌کند</text>
+      <text x="567" y="100" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="10" fill="#9ca3af">آخر جمله — همیشه</text>
+      <!-- Example -->
+      <text x="340" y="145" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="14" fill="var(--ink2)">Ich habe gestern Sport gemacht.</text>
+      <text x="340" y="168" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="var(--ink3)">دیروز ورزش کردم.</text>
+      <text x="340" y="185" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="var(--ink4)">فعل کمکی جایگاه ۲ — Partizip II همیشه آخر</text>
+    </svg>
+    <div class="svg-cap">ساختار ثابت — فعل کمکی جایگاه ۲، Partizip II انتهای جمله</div>
+  </div>
+</div>
+
+<!-- ══ بخش ۳ — haben یا sein؟ ══ -->
+<div class="section">
+  <div class="section-label">بخش ۳ — haben یا sein؟</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="teacher-box">
+    <p>این سوال بیشترین اشتباه را در بین یادگیرندگان دارد. قانون کلی ساده است: <strong>اکثر فعل‌ها با haben می‌آیند.</strong> فقط یک گروه خاص با sein می‌آیند.</p>
+    <p>با <span class="hl">sein</span> می‌آیند: <span class="hl-g">۱) فعل‌های حرکت از A به B</span> مثل gehen, fahren, kommen — <span class="hl-g">۲) فعل‌های تغییر حالت</span> مثل einschlafen, aufwachen — <span class="hl-g">۳) سه فعل خاص:</span> sein, bleiben, passieren</p>
+    <p>یک قانون کاربردی: اگر فعل <strong>مفعول مستقیم می‌گیرد</strong> (می‌توانی بپرسی «چه چیزی را؟»)، تقریباً همیشه با <span class="hl">haben</span> می‌آید.</p>
+  </div>
+
+  <!-- Decision Tree SVG -->
+  <div class="svg-wrap">
+    <svg width="100%" viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#c8d0e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect width="680" height="310" fill="var(--surface)"/>
+      <text x="340" y="26" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="var(--ink3)" font-weight="600">درخت تصمیم — haben یا sein</text>
+      <!-- Start -->
+      <rect x="215" y="38" width="250" height="48" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="340" y="58" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="13" fill="#1e40af" font-weight="600">فعل را بررسی کن</text>
+      <text x="340" y="76" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">چه نوع فعلی است؟</text>
+      <line x1="340" y1="86" x2="340" y2="108" stroke="#c8d0e0" stroke-width="1.5"/>
+      <!-- Diamond -->
+      <polygon points="340,108 450,158 340,208 230,158" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+      <text x="340" y="150" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="#92400e" font-weight="600">حرکت A→B</text>
+      <text x="340" y="168" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="#92400e" font-weight="600">یا تغییر حالت؟</text>
+      <!-- sein branch -->
+      <line x1="450" y1="158" x2="530" y2="158" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a2)"/>
+      <text x="489" y="150" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#166534" font-weight="700">بله</text>
+      <rect x="530" y="132" width="130" height="52" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+      <text x="595" y="154" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="19" fill="#166534" font-weight="700">sein</text>
+      <text x="595" y="173" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">bin/bist/ist/sind...</text>
+      <!-- haben branch -->
+      <line x1="230" y1="158" x2="150" y2="158" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a2)"/>
+      <text x="190" y="150" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#991b1b" font-weight="700">خیر</text>
+      <rect x="20" y="132" width="130" height="52" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="2"/>
+      <text x="85" y="154" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="19" fill="#991b1b" font-weight="700">haben</text>
+      <text x="85" y="173" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">habe/hast/hat...</text>
+      <!-- haben examples -->
+      <text x="85" y="210" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">essen → habe gegessen</text>
+      <text x="85" y="226" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">lesen → habe gelesen</text>
+      <text x="85" y="242" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">kaufen → habe gekauft</text>
+      <text x="85" y="260" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#9ca3af">خوردن، خواندن، خریدن</text>
+      <!-- sein examples -->
+      <text x="595" y="210" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">gehen → bin gegangen</text>
+      <text x="595" y="226" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">fahren → bin gefahren</text>
+      <text x="595" y="242" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6b7280">einschlafen → bin eingeschlafen</text>
+      <text x="595" y="260" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#9ca3af">رفتن، رانندگی، خوابیدن</text>
+      <!-- Special -->
+      <rect x="210" y="276" width="260" height="28" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+      <text x="340" y="294" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#5b21b6" font-weight="600">استثنا: sein, bleiben, passieren → همیشه sein</text>
+    </svg>
+    <div class="svg-cap">درخت تصمیم سریع برای انتخاب haben یا sein</div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="gtbl">
+      <thead><tr><th>فعل</th><th class="ltr">Partizip II</th><th class="ltr">فعل کمکی</th><th>دلیل</th><th>ترجمه</th></tr></thead>
+      <tbody>
+        <tr><td>gehen</td><td class="de">gegangen</td><td class="de green">sein</td><td>حرکت A→B</td><td>رفتن</td></tr>
+        <tr><td>fahren</td><td class="de">gefahren</td><td class="de green">sein</td><td>حرکت A→B</td><td>رانندگی</td></tr>
+        <tr><td>kommen</td><td class="de">gekommen</td><td class="de green">sein</td><td>حرکت A→B</td><td>آمدن</td></tr>
+        <tr><td>einschlafen</td><td class="de">eingeschlafen</td><td class="de green">sein</td><td>تغییر حالت</td><td>خوابیدن</td></tr>
+        <tr><td>aufwachen</td><td class="de">aufgewacht</td><td class="de green">sein</td><td>تغییر حالت</td><td>بیدار شدن</td></tr>
+        <tr class="hl-row"><td>bleiben</td><td class="de">geblieben</td><td class="de green">sein</td><td>استثنا — حفظ کن</td><td>ماندن</td></tr>
+        <tr class="hl-row"><td>sein</td><td class="de">gewesen</td><td class="de green">sein</td><td>استثنا — حفظ کن</td><td>بودن</td></tr>
+        <tr><td>essen</td><td class="de">gegessen</td><td class="de red">haben</td><td>مفعول مستقیم</td><td>خوردن</td></tr>
+        <tr><td>lesen</td><td class="de">gelesen</td><td class="de red">haben</td><td>مفعول مستقیم</td><td>خواندن</td></tr>
+        <tr><td>arbeiten</td><td class="de">gearbeitet</td><td class="de red">haben</td><td>نه حرکت نه تغییر</td><td>کار کردن</td></tr>
+        <tr><td>kaufen</td><td class="de">gekauft</td><td class="de red">haben</td><td>مفعول مستقیم</td><td>خریدن</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ بخش ۴ — Partizip II ══ -->
+<div class="section">
+  <div class="section-label">بخش ۴ — ساخت Partizip II</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="teacher-box">
+    <p>Partizip II شکل خاصی از فعل است که در انتهای جمله Perfekt می‌آید. <strong>پنج نوع</strong> دارد — اما مهم‌ترینش برای A2 همان قانون ساده <span class="hl">ge- + ریشه + -t</span> است.</p>
+    <p>یک نکته دقیق که خیلی‌ها فراموش می‌کنند: وقتی ریشه فعل به <span class="hl-a">t، d، m، یا n</span> ختم می‌شود، به جای <code>-t</code> باید <code>-et</code> اضافه کنی تا تلفظ راحت‌تر شود. مثلاً arbeiten → gearbeitet (نه gearbeit).</p>
+  </div>
+
+  <!-- SVG for ge- rule -->
+  <div class="svg-wrap">
+    <svg width="100%" viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#c8d0e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect width="680" height="150" fill="var(--surface)"/>
+      <text x="340" y="22" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="12" fill="var(--ink3)" font-weight="600">ساخت Partizip II — فعل‌های منظم</text>
+      <rect x="20" y="36" width="120" height="56" rx="10" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+      <text x="80" y="57" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="14" fill="#5b21b6" font-weight="600">machen</text>
+      <text x="80" y="75" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">فعل اصلی</text>
+      <text x="80" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#9ca3af">mach-</text>
+      <line x1="142" y1="64" x2="158" y2="64" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a3)"/>
+      <rect x="160" y="36" width="130" height="56" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="225" y="57" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="15" fill="#991b1b" font-weight="700">ge-</text>
+      <text x="225" y="75" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">پیشوند اضافه</text>
+      <text x="225" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#9ca3af">ge + mach</text>
+      <line x1="292" y1="64" x2="308" y2="64" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a3)"/>
+      <rect x="310" y="36" width="130" height="56" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+      <text x="375" y="57" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="15" fill="#166534" font-weight="700">-t</text>
+      <text x="375" y="75" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">پسوند اضافه</text>
+      <text x="375" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#9ca3af">ge + mach + t</text>
+      <line x1="442" y1="64" x2="458" y2="64" stroke="#c8d0e0" stroke-width="1.5" marker-end="url(#a3)"/>
+      <rect x="460" y="36" width="200" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+      <text x="560" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="18" fill="#1e40af" font-weight="700">gemacht ✓</text>
+      <text x="560" y="80" text-anchor="middle" font-family="Vazirmatn,Tahoma,sans-serif" font-size="11" fill="#6b7280">نتیجه نهایی</text>
+      <text x="340" y="130" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="var(--ink3)">ge- + Stamm + -t  →  اگر Stamm به t/d/m/n ختم شد: ge- + Stamm + -et</text>
+    </svg>
+    <div class="svg-cap">قانون اصلی Partizip II برای فعل‌های منظم</div>
+  </div>
+
+  <div class="pz-list">
+    <div class="pz-row">
+      <div class="pz-cell type">منظم<div class="pz-sub">schwache Verben</div></div>
+      <div class="pz-cell pattern">ge- + Stamm + -t</div>
+      <div class="pz-cell example">kaufen→gekauft · spielen→gespielt · lernen→gelernt</div>
+    </div>
+    <div class="pz-row">
+      <div class="pz-cell type">منظم با -et<div class="pz-sub">ریشه به t/d/m/n</div></div>
+      <div class="pz-cell pattern">ge- + Stamm + -et</div>
+      <div class="pz-cell example">arbeiten→gearbeitet · antworten→geantwortet · zeichnen→gezeichnet</div>
+    </div>
+    <div class="pz-row">
+      <div class="pz-cell type">نامنظم<div class="pz-sub">starke Verben — حفظ کن</div></div>
+      <div class="pz-cell pattern">ge- + Stamm(تغییر) + -en</div>
+      <div class="pz-cell example">fahren→gefahren · essen→gegessen · trinken→getrunken</div>
+    </div>
+    <div class="pz-row">
+      <div class="pz-cell type">فعل‌های -ieren<div class="pz-sub">بدون ge-</div></div>
+      <div class="pz-cell pattern">Stamm + -iert</div>
+      <div class="pz-cell example">studieren→studiert · fotografieren→fotografiert</div>
+    </div>
+    <div class="pz-row">
+      <div class="pz-cell type">پیشوند ثابت<div class="pz-sub">be-, er-, ver-... بدون ge-</div></div>
+      <div class="pz-cell pattern">Präfix + Stamm + -t/-en</div>
+      <div class="pz-cell example">bezahlen→bezahlt · besuchen→besucht · erleben→erlebt</div>
+    </div>
+    <div class="pz-row">
+      <div class="pz-cell type">پیشوند جداشدنی<div class="pz-sub">ge- وسط می‌آید</div></div>
+      <div class="pz-cell pattern">Präfix + ge + Stamm + -t/-en</div>
+      <div class="pz-cell example">aufmachen→aufgemacht · einkaufen→eingekauft · anrufen→angerufen</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ بخش ۵ — مثال‌های کامل ══ -->
+<div class="section">
+  <div class="section-label">بخش ۵ — مثال‌های کامل</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="examples">
+    <div class="ex-card">
+      <div class="ex-de"><span>Ich <span class="aux">habe</span> gestern viel <span class="p2">gearbeitet</span>.</span><button class="speak-btn" onclick="speak(this,'Ich habe gestern viel gearbeitet.')">🔊</button></div>
+      <div class="ex-fa">دیروز خیلی کار کردم.</div>
+      <div class="ex-note">arbeiten منظم، ریشه به t → gearbeitet | haben چون مفعول ندارد</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span>Er <span class="aux">ist</span> letzte Woche nach Hamburg <span class="p2">gefahren</span>.</span><button class="speak-btn" onclick="speak(this,'Er ist letzte Woche nach Hamburg gefahren.')">🔊</button></div>
+      <div class="ex-fa">هفته گذشته به هامبورگ رفت.</div>
+      <div class="ex-note">fahren = حرکت A→B → sein | fahren نامنظم → gefahren</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span>Sie <span class="aux">hat</span> in Wien <span class="p2">studiert</span>.</span><button class="speak-btn" onclick="speak(this,'Sie hat in Wien studiert.')">🔊</button></div>
+      <div class="ex-fa">در وین تحصیل کرد.</div>
+      <div class="ex-note">studieren → فعل -ieren → بدون ge- → studiert</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span>Wir <span class="aux">haben</span> das Restaurant <span class="p2">besucht</span>.</span><button class="speak-btn" onclick="speak(this,'Wir haben das Restaurant besucht.')">🔊</button></div>
+      <div class="ex-fa">رستوران را دیدیم.</div>
+      <div class="ex-note">besuchen → پیشوند ثابت be- → بدون ge- → besucht</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span>Ich <span class="aux">bin</span> erst um Mitternacht <span class="p2">eingeschlafen</span>.</span><button class="speak-btn" onclick="speak(this,'Ich bin erst um Mitternacht eingeschlafen.')">🔊</button></div>
+      <div class="ex-fa">تازه نیمه شب خوابم برد.</div>
+      <div class="ex-note">einschlafen = تغییر حالت → sein | پیشوند جداشدنی → ein+ge+schlafen</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span><span class="aux">Hast</span> du das Buch <span class="p2">gelesen</span>?</span><button class="speak-btn" onclick="speak(this,'Hast du das Buch gelesen?')">🔊</button></div>
+      <div class="ex-fa">آیا کتاب را خواندی؟</div>
+      <div class="ex-note">سوال: فعل کمکی به اول جمله می‌آید</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-de"><span>Nein, ich <span class="aux">habe</span> es <span class="neg">nicht</span> <span class="p2">gelesen</span>.</span><button class="speak-btn" onclick="speak(this,'Nein, ich habe es nicht gelesen.')">🔊</button></div>
+      <div class="ex-fa">نه، نخواندم.</div>
+      <div class="ex-note">منفی: nicht قبل از Partizip II می‌آید</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ بخش ۶ — دیالوگ ══ -->
+<div class="section">
+  <div class="section-label">بخش ۶ — در زندگی واقعی</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="dialog-wrap">
+    <div class="dialog-header">💬 دوشنبه صبح — دفتر کار</div>
+    <div class="dialog-body">
+      <div class="bubble a">
+        <div class="speaker">ANNA</div>
+        <div class="de">Hallo Felix! Wie war dein Wochenende?</div>
+        <div class="fa">سلام فلیکس! آخر هفته‌ات چطور بود؟</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">FELIX</div>
+        <div class="de">Super! Ich <span class="aux">bin</span> Samstag nach Hamburg <span class="p2">gefahren</span>.</div>
+        <div class="fa">عالی! شنبه به هامبورگ رفتم.</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">ANNA</div>
+        <div class="de">Was <span class="aux">hast</span> du dort <span class="p2">gemacht</span>?</div>
+        <div class="fa">اونجا چیکار کردی؟</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">FELIX</div>
+        <div class="de">Ich <span class="aux">habe</span> Freunde <span class="p2">getroffen</span> und wir <span class="aux">haben</span> viel <span class="p2">gegessen</span>.</div>
+        <div class="fa">با دوستام دیدم و خیلی خوردیم.</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">ANNA</div>
+        <div class="de">Wann <span class="aux">bist</span> du <span class="p2">zurückgekommen</span>?</div>
+        <div class="fa">کِی برگشتی؟</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">FELIX</div>
+        <div class="de">Gestern Abend. Ich <span class="aux">bin</span> erst um Mitternacht <span class="p2">eingeschlafen</span>!</div>
+        <div class="fa">دیشب. تازه نیمه شب خوابم برد!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ بخش ۷ — Partizip II به عنوان صفت ══ -->
+<div class="section">
+  <div class="section-label">بخش ۷ — Partizip II به عنوان صفت</div>
+
+  <div class="advanced-notice b1b2">
+    <span class="an-icon">⚡</span>
+    <div>
+      <div class="an-title">سطح B1/B2 — پیشرفته</div>
+      <div class="an-body">این بخش برای A2 ضروری نیست. اما چون در مکالمه آلمانی خیلی می‌شنوی، ارزش دارد آشنا باشی. الان نیازی به حفظ کردن نداری — فقط بخوان و آشنا شو.</div>
+    </div>
+  </div>
+
+  <div class="level-tag level-b1b2">⚡ سطح B1/B2</div>
+
+  <div class="teacher-box">
+    <p>Partizip II فقط در Perfekt استفاده نمی‌شود — می‌تواند مثل یک <strong>صفت</strong> هم عمل کند. این یعنی می‌توانی بگویی «پنجره باز است» با استفاده از Partizip II فعل öffnen.</p>
+    <p>دو نوع استفاده دارد: یا بعد از فعل می‌آید (مثل صفت خبری در فارسی)، یا قبل از اسم (مثل صفت وصفی).</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="gtbl">
+      <thead><tr><th>نوع</th><th class="ltr">مثال آلمانی</th><th>ترجمه</th></tr></thead>
+      <tbody>
+        <tr><td>بعد از فعل (خبری)</td><td class="de">Das Fenster ist geöffnet.</td><td>پنجره باز است.</td></tr>
+        <tr><td>بعد از فعل (خبری)</td><td class="de">Das Geschäft bleibt geschlossen.</td><td>مغازه بسته می‌ماند.</td></tr>
+        <tr><td>قبل از اسم (وصفی)</td><td class="de">das geöffnete Fenster</td><td>پنجره باز شده</td></tr>
+        <tr><td>قبل از اسم (وصفی)</td><td class="de">der verstorbene Mann</td><td>مرد متوفی</td></tr>
+        <tr><td>قبل از اسم (وصفی)</td><td class="de">das schwer verletzte Tier</td><td>حیوان سخت مجروح</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <span class="callout-icon">📌</span>
+    <div>وقتی Partizip II قبل از اسم می‌آید، مثل هر صفت دیگری باید پسوند بگیرد — این بخش مربوط به Adjektivdeklination است که در سطح B1 یاد می‌گیری.</div>
+  </div>
+</div>
+
+<!-- ══ بخش ۸ — Perfekt با Modalverben ══ -->
+<div class="section">
+  <div class="section-label">بخش ۸ — Perfekt با Modalverben</div>
+
+  <div class="advanced-notice b2">
+    <span class="an-icon">⚡</span>
+    <div>
+      <div class="an-title">سطح B1/B2 — پیشرفته</div>
+      <div class="an-body">این بخش در مکالمه روزمره نادر است — آلمانی‌ها معمولاً برای Modalverben از Präteritum استفاده می‌کنند (musste, konnte, wollte). این شکل‌ها را در سطح B1 یاد خواهی گرفت. فعلاً فقط آشنا شو.</div>
+    </div>
+  </div>
+
+  <div class="level-tag level-b2">⚡ سطح B1/B2</div>
+
+  <div class="teacher-box">
+    <p>Perfekt با Modalverben دو شکل دارد: وقتی Modal <strong>به تنهایی</strong> فعل اصلی است (نادر)، و وقتی یک فعل اصلی هم دارد (رایج‌تر اما در B1).</p>
+    <p>در حالت دوم ساختار خاصی داریم: <span class="hl">haben + Infinitiv فعل اصلی + Infinitiv Modal</span> — یعنی هر دو فعل به شکل Infinitiv در آخر جمله می‌آیند. این را <strong>Ersatzinfinitiv</strong> می‌نامند.</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="gtbl">
+      <thead><tr><th>نوع</th><th class="ltr">مثال</th><th>ترجمه</th></tr></thead>
+      <tbody>
+        <tr><td>Modal به تنهایی</td><td class="de">Das habe ich nicht gewollt.</td><td>این را نخواستم.</td></tr>
+        <tr><td>Modal به تنهایی</td><td class="de">Er hat die Aufgabe nicht gekonnt.</td><td>او از پس تکلیف برنیامد.</td></tr>
+        <tr class="hl-row"><td>با فعل اصلی (Ersatzinfinitiv)</td><td class="de">Ich habe es machen müssen.</td><td>مجبور بودم آن را انجام بدهم.</td></tr>
+        <tr class="hl-row"><td>با فعل اصلی</td><td class="de">Er hat nicht kommen können.</td><td>نتوانست بیاید.</td></tr>
+        <tr class="hl-row"><td>با فعل اصلی</td><td class="de">Wir haben das Zimmer aufräumen sollen.</td><td>باید اتاق را مرتب می‌کردیم.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <span class="callout-icon">💡</span>
+    <div><strong>در مکالمه روزمره</strong> به جای این شکل‌های پیچیده، از Präteritum استفاده کن: <code>Ich musste es machen</code> به جای <code>Ich habe es machen müssen</code>. آلمانی‌ها خودشان هم در مکالمه همین کار را می‌کنند.</div>
+  </div>
+</div>
+
+<!-- ══ اشتباهات رایج ══ -->
+<div class="section">
+  <div class="section-label">اشتباهات رایج فارسی‌زبان‌ها</div>
+  <div class="level-tag level-a2">✓ سطح A2 — پایه و ضروری</div>
+
+  <div class="trap-list">
+    <div class="trap-item">
+      <div class="trap-wrong">✗ Ich bin gegessen.</div>
+      <div class="trap-right">✓ Ich habe gegessen.</div>
+      <div class="trap-why">essen مفعول مستقیم می‌گیرد و حرکتی نیست → haben</div>
+    </div>
+    <div class="trap-item">
+      <div class="trap-wrong">✗ Er hat gegangen.</div>
+      <div class="trap-right">✓ Er ist gegangen.</div>
+      <div class="trap-why">gehen = حرکت از A به B → sein</div>
+    </div>
+    <div class="trap-item">
+      <div class="trap-wrong">✗ Ich habe gekauft das Buch.</div>
+      <div class="trap-right">✓ Ich habe das Buch gekauft.</div>
+      <div class="trap-why">Partizip II باید آخرین کلمه جمله باشد</div>
+    </div>
+    <div class="trap-item">
+      <div class="trap-wrong">✗ Sie hat in Wien gestudiert.</div>
+      <div class="trap-right">✓ Sie hat in Wien studiert.</div>
+      <div class="trap-why">فعل‌های -ieren هیچوقت ge- نمی‌گیرند</div>
+    </div>
+    <div class="trap-item">
+      <div class="trap-wrong">✗ Ich habe nicht gegessen nicht.</div>
+      <div class="trap-right">✓ Ich habe nicht gegessen.</div>
+      <div class="trap-why">فقط یک nicht — و باید قبل از Partizip II بیاید</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div class="quiz-section">
+  <div class="quiz-header">
+    <div>
+      <div class="qh-title">تمرین — Perfekt</div>
+      <div class="qh-sub">۶ سوال از ساده به پیچیده</div>
+    </div>
+    <div class="score-badge" id="score-badge">0 / 6</div>
+  </div>
+  <div class="quiz-body">
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۱ — فعل کمکی</div>
+      <div class="q-text">Ich ___ gestern viel gearbeitet.</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">bin</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">habe</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">war</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">hatte</button>
+      </div>
+      <div class="q-feedback" data-exp="arbeiten نه حرکت است نه تغییر حالت → haben"></div>
+    </div>
+    <div class="quiz-div"></div>
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۲ — haben یا sein</div>
+      <div class="q-text">Er ___ gestern nach Berlin geflogen.</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">hat</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">ist</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">war</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">hatte</button>
+      </div>
+      <div class="q-feedback" data-exp="fliegen = حرکت از A به B → sein"></div>
+    </div>
+    <div class="quiz-div"></div>
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۳ — ساخت Partizip II</div>
+      <div class="q-text">Sie hat in Köln ___. (studieren)</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gestudiert</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">studiert</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">studieren</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gestudierten</button>
+      </div>
+      <div class="q-feedback" data-exp="studieren → فعل -ieren → بدون ge- → studiert"></div>
+    </div>
+    <div class="quiz-div"></div>
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۴ — پیشوند جداشدنی</div>
+      <div class="q-text">Ich bin heute früh ___. (aufwachen)</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gewacht</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">aufwacht</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">aufgewacht</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">geaufwacht</button>
+      </div>
+      <div class="q-feedback" data-exp="aufwachen = تغییر حالت → sein | پیشوند جداشدنی auf- → auf+ge+wacht = aufgewacht"></div>
+    </div>
+    <div class="quiz-div"></div>
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۵ — پیشوند ثابت</div>
+      <div class="q-text">Hast du die Rechnung ___? (bezahlen)</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gebezahlt</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">bezahlt</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">bezahlen</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gezahlt</button>
+      </div>
+      <div class="q-feedback" data-exp="bezahlen → پیشوند ثابت be- → بدون ge- → bezahlt"></div>
+    </div>
+    <div class="quiz-div"></div>
+
+    <div class="quiz-q">
+      <div class="qnum">سوال ۶ — ترتیب کلمات</div>
+      <div class="q-text">Wir haben ___ (das Buch / gestern / gekauft).</div>
+      <div class="q-opts">
+        <button class="q-opt" data-correct="false" onclick="answer(this)">gekauft das Buch gestern</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">das Buch gekauft gestern</button>
+        <button class="q-opt" data-correct="true"  onclick="answer(this)">gestern das Buch gekauft</button>
+        <button class="q-opt" data-correct="false" onclick="answer(this)">das Buch gestern kaufen</button>
+      </div>
+      <div class="q-feedback" data-exp="ترتیب: قید زمان → مفعول → Partizip II در آخر: gestern das Buch gekauft"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DONE -->
+<div class="done-section">
+  <div class="done-title">درس Perfekt را تمام کردی؟</div>
+  <div class="done-sub">وقتی احساس کردی مطالب A2 را درک کردی، علامت بزن.</div>
+  <button class="done-btn" id="done-btn" onclick="toggleDone()">
+    <span id="done-icon">○</span>
+    <span id="done-text">این درس را یاد گرفتم</span>
+  </button>
+</div>
+
+</div><!-- /content -->
+</div><!-- /page -->
+
+<script>
+'use strict';
+let activeSpeakBtn=null;
+function speak(btn,text){
+  if(!window.speechSynthesis)return;
+  if(activeSpeakBtn===btn&&speechSynthesis.speaking){speechSynthesis.cancel();btn.textContent='🔊';btn.classList.remove('on');activeSpeakBtn=null;return;}
+  speechSynthesis.cancel();
+  if(activeSpeakBtn){activeSpeakBtn.textContent='🔊';activeSpeakBtn.classList.remove('on');}
+  const u=new SpeechSynthesisUtterance(text);u.lang='de-DE';u.rate=0.85;
+  const dv=speechSynthesis.getVoices().find(v=>v.lang.startsWith('de'));if(dv)u.voice=dv;
+  u.onstart=()=>{btn.textContent='🔉';btn.classList.add('on');activeSpeakBtn=btn;};
+  u.onend=u.onerror=()=>{btn.textContent='🔊';btn.classList.remove('on');activeSpeakBtn=null;};
+  speechSynthesis.speak(u);
+}
+if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
+
+let score=0,answered=0;
+function answer(btn){
+  const qDiv=btn.closest('.quiz-q');
+  if(qDiv.dataset.answered)return;
+  qDiv.dataset.answered='1';
+  answered++;
+  const ok=btn.dataset.correct==='true';
+  qDiv.querySelectorAll('.q-opt').forEach(b=>{b.setAttribute('disabled','');if(b.dataset.correct==='true')b.classList.add('correct');});
+  if(!ok)btn.classList.add('wrong');
+  else score++;
+  const fb=qDiv.querySelector('.q-feedback');
+  fb.textContent=(ok?'✓ درست! — ':'✗ اشتباه — ')+fb.dataset.exp;
+  fb.classList.add('show',ok?'ok':'err');
+  document.getElementById('score-badge').textContent=score+' / '+answered;
+  updateProgress();
+}
+
+let done=localStorage.getItem('perfekt2_done')==='1';
+function toggleDone(){
+  done=!done;localStorage.setItem('perfekt2_done',done?'1':'0');
+  const btn=document.getElementById('done-btn');
+  btn.classList.toggle('marked',done);
+  document.getElementById('done-icon').textContent=done?'✓':'○';
+  document.getElementById('done-text').textContent=done?'یاد گرفتم!':'این درس را یاد گرفتم';
+  updateProgress();
+}
+if(done){document.getElementById('done-btn').classList.add('marked');document.getElementById('done-icon').textContent='✓';document.getElementById('done-text').textContent='یاد گرفتم!';}
+
+function updateProgress(){
+  const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight)||0;
+  let p=Math.min(Math.round(scrolled*70),70);
+  if(answered>0)p=Math.max(p,Math.round(answered/6*50)+20);
+  if(done)p=100;
+  document.getElementById('sb-fill').style.width=p+'%';
+  document.getElementById('sb-pct').textContent=p+'%';
+}
+window.addEventListener('scroll',updateProgress,{passive:true});
+updateProgress();
+
+if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}
+</script>
+</body>
+</html>
